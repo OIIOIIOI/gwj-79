@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpqf5qc64m60p"]
+
+[ext_resource type="Script" uid="uid://boif2lhuh7cir" path="res://scenes/warp/warp.gd" id="1_rlemb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ak7j5"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rlemb"]
+size = Vector3(0.5, 0.04, 0.5)
+
+[node name="Warp" type="Area3D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_rlemb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_ak7j5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_rlemb")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

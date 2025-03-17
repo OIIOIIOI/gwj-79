@@ -1,0 +1,159 @@
+[gd_scene load_steps=8 format=3 uid="uid://dksxk52p2ydcl"]
+
+[ext_resource type="Texture2D" uid="uid://kv2n7wctohdq" path="res://assets/_temp/beast.png" id="1_10t74"]
+[ext_resource type="Script" uid="uid://bangb3ocby0i8" path="res://scenes/beast/beast.gd" id="2_0mv0g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nfgux"]
+size = Vector3(2.2, 2, 0.5)
+
+[sub_resource type="Animation" id="Animation_avolp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/Sprite3D:rotation:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0523599]
+}
+
+[sub_resource type="Animation" id="Animation_0mv0g"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite3D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.05, 0.95, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yp2xi"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite3D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.05, 0.95, 1), Vector3(0.95, 1.05, 1), Vector3(1.05, 0.95, 1), Vector3(0.95, 1.05, 1), Vector3(1.05, 0.95, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Sprite3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0872665), Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/Sprite3D:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_avolp"]
+_data = {
+&"RESET": SubResource("Animation_avolp"),
+&"idle": SubResource("Animation_0mv0g"),
+&"walk": SubResource("Animation_yp2xi")
+}
+
+[node name="Beast" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("2_0mv0g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03754, 0)
+shape = SubResource("BoxShape3D_nfgux")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Visuals"]
+transform = Transform3D(0.99863, -0.052336, 0, 0.052336, 0.99863, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
+offset = Vector2(-25, 115)
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("1_10t74")
+
+[node name="CameraController" type="Node3D" parent="."]
+top_level = true
+
+[node name="CameraTarget" type="Node3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 0.980385, 0.197093, 0, -0.197093, 0.980385, 0, 2.62737, 8.98685)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/CameraTarget"]
+transform = Transform3D(1, 0, 0, 0, 0.974878, -0.22274, 0, 0.22274, 0.974878, 0, 0.718432, -2.72474)
+size = 7.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_avolp")
+}
+autoplay = "idle"

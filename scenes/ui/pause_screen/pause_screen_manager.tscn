@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://doufaajn6e5tb"]
+
+[ext_resource type="Script" uid="uid://6hk65jitwfda" path="res://scenes/ui/pause_screen/pause_screen_manager.gd" id="1_w36uy"]
+[ext_resource type="PackedScene" uid="uid://d4hhpebv4k5te" path="res://scenes/ui/pause_screen/pause_screen.tscn" id="2_ecln1"]
+
+[node name="PauseScreenManager" type="Node"]
+script = ExtResource("1_w36uy")
+pause_scene = ExtResource("2_ecln1")
